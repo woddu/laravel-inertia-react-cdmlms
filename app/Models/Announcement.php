@@ -9,11 +9,6 @@ class Announcement extends Model
 {
     use HasFactory;
 
-    /**
-     * //TODO prepare for markdown
-     * 
-     */
-
     protected $fillable = [
         'title',
         'content',

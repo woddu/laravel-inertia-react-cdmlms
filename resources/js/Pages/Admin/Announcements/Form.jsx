@@ -44,7 +44,7 @@ export default function Form({ selected, editing = false, back }) {
                         <>
                             <form onSubmit={submit}>
                                 <div className='flex flex-col sm:flex-row gap-4 my-3'>
-                                    <div className="flex flex-row justify-between sm:gap-4">
+                                    <div className="flex flex-row justify-between gap-2 sm:gap-4">
                                         <div>
                                             <InputLabel htmlFor='title' value='Title' />
                                             <TextInput
@@ -116,7 +116,7 @@ export default function Form({ selected, editing = false, back }) {
 
                                         </div>
                                     </div>
-                                    <div className="flex flex-row gap-4">
+                                    <div className="flex flex-row justify-between gap-2 sm:gap-4">
                                         {
                                             data.cardtype == 'icon' && (
                                                 <>

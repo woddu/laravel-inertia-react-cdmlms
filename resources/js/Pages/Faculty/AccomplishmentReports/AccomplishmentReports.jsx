@@ -43,7 +43,6 @@ export default function AccomplishmentReports({ auth, paginated }) {
 
     const { data, setData, post, patch, errors, hasErrors, processing, reset, recentlySuccessful } = useForm(empty);
 
-
     const submit = (e) => {
         e.preventDefault();
         if (editing) {

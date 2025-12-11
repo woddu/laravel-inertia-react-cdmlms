@@ -88,7 +88,7 @@ export default function Login({ status, canResetPassword }) {
                         <InputError message={errors.password} className="mt-2" />
                     </div>
 
-                    <div className="d-flex align-items-center justify-between mb-3">
+                    <div className="flex align-items-center justify-between mb-3">
                         <div className="form-check !text-[#69707a]">
                             <Checkbox
                                 name="remember"
@@ -102,7 +102,7 @@ export default function Login({ status, canResetPassword }) {
                         </div>
                     </div>
 
-                    <div className="d-flex place-content-center items-center justify-content-between mb-0">
+                    <div className="flex place-content-center items-center justify-content-between mb-0">
                         {canResetPassword && (
                             <Link
                                 href={route('password.request')}
