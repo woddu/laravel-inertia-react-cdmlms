@@ -5,9 +5,7 @@ composer install --no-dev --working-dir=/var/www/html
 composer require fakerphp/faker --working-dir=/var/www/html
 
 echo "Ensuring SQLite database file exists..."
-# Make sure the database directory exists
 mkdir -p /var/www/html/database
-# Create the sqlite file if it doesn't exist
 if [ ! -f /var/www/html/database/database.sqlite ]; then
     touch /var/www/html/database/database.sqlite
 fi
@@ -17,6 +15,13 @@ chown www-data:www-data /var/www/html/database/database.sqlite
 chmod 664 /var/www/html/database/database.sqlite
 chown www-data:www-data /var/www/html/database
 chmod 775 /var/www/html/database
+
+echo "Verifying SQLite file..."
+if [ ! -f /var/www/html/database/database.sqlite ]; then
+    echo "ERROR: SQLite database file still missing after setup!"
+    ls -l /var/www/html/database   # show directory contents for debugging
+    exit 1                         # abort deployment
+fi
 
 echo "Caching config..."
 php artisan config:cache
