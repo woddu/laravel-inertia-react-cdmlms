@@ -3,7 +3,6 @@
 use App\Http\Controllers\AccomplishreportController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnnouncementController;
-use App\Http\Controllers\ExamController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
@@ -56,8 +55,8 @@ Route::middleware(['faculty', 'auth'])->group(function () {
     Route::resource('file', FileController::class)
         ->only(['store', 'update', 'destroy']);
 
-    Route::resource('onlineexam', ExamController::class)
-        ->only(['index', 'store', 'update', 'destroy']);
+    // Route::resource('onlineexam', ExamController::class)
+    //     ->only(['index', 'store', 'update', 'destroy']);
 
     Route::get('/attendance', function () {
         return Inertia::render('Faculty/Attendance', []);
