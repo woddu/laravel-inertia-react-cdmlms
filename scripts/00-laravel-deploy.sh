@@ -17,9 +17,9 @@ chown www-data:www-data /var/www/html/database
 chmod 775 /var/www/html/database
 
 echo "Verifying SQLite file..."
+ls -l /var/www/html/database   # show directory contents for debugging
 if [ ! -f /var/www/html/database/database.sqlite ]; then
     echo "ERROR: SQLite database file still missing after setup!"
-    ls -l /var/www/html/database   # show directory contents for debugging
     exit 1                         # abort deployment
 fi
 
