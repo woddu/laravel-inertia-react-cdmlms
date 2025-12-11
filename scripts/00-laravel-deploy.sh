@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 echo "Running composer"
+# Install dependencies and make sure Faker is available in production
 composer install --no-dev --working-dir=/var/www/html
+composer require fakerphp/faker --working-dir=/var/www/html
 
 echo "Caching config..."
 php artisan config:cache
@@ -15,8 +17,7 @@ echo "Running seeders..."
 php artisan db:seed --force
 
 echo "Fixing SQLite permissions..."
-# Adjust ownership to web server user (often www-data for Nginx/PHP-FPM)
-sudo chown www-data:www-data /var/www/html/database/database.sqlite
-sudo chmod 664 /var/www/html/database/database.sqlite
-sudo chown www-data:www-data /var/www/html/database
-sudo chmod 775 /var/www/html/database
+chown www-data:www-data /var/www/html/database/database.sqlite
+chmod 664 /var/www/html/database/database.sqlite
+chown www-data:www-data /var/www/html/database
+chmod 775 /var/www/html/database
