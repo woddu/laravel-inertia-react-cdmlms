@@ -16,10 +16,7 @@ COPY . .
 # Copy built assets from Node stage (Vite outputs to public/build)
 COPY --from=node-build /app/public/build /var/www/html/public/build
 
-# Install PHP dependencies once at build time
-RUN composer install --no-dev --optimize-autoloader
-
-# Image config
+ENV SKIP_COMPOSER 1
 ENV WEBROOT=/var/www/html/public
 ENV PHP_ERRORS_STDERR=1
 ENV RUN_SCRIPTS=1
