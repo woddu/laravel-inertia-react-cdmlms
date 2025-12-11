@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccomplishreportController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\ExamController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
@@ -15,7 +16,7 @@ use Inertia\Inertia;
 
 // Route::get('/test', function () {
 //     return Inertia::render('Tests', [
-        
+
 //     ]);
 // });
 
@@ -27,7 +28,7 @@ Route::middleware('auth')->group(function () {
     })->name('unverified faculty');
 });
 
-Route::middleware('faculty')->group(function () {
+Route::middleware(['faculty', 'auth'])->group(function () {
 
     // Route::get('/dashboard', function () {
     //     return Inertia::render('Faculty/Dashboard');
@@ -55,18 +56,16 @@ Route::middleware('faculty')->group(function () {
     Route::resource('file', FileController::class)
         ->only(['store', 'update', 'destroy']);
 
+    Route::resource('onlineexam', ExamController::class)
+        ->only(['index', 'store', 'update', 'destroy']);
+
     Route::get('/attendance', function () {
         return Inertia::render('Faculty/Attendance', []);
     })->name('attendance');
 
-    Route::get('/onlineexam', function () {
-        return Inertia::render('Faculty/OnlineExam', []);
-    })->name('onlineexam');
-
     Route::get('/onlineclass', function () {
         return Inertia::render('Faculty/OnlineClass', []);
     })->name('onlineclass');
-
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
