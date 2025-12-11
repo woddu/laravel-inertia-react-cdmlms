@@ -12,8 +12,7 @@ WORKDIR /var/www/html
 COPY . .
 
 # Copy built assets from Node stage
-COPY --from=node-build /app/public/js /var/www/html/public/js
-COPY --from=node-build /app/public/css /var/www/html/public/css
+COPY --from=node-build /app/public/build /var/www/html/public/build
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
