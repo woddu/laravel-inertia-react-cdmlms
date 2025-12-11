@@ -185,12 +185,12 @@ export default function Layout(
                                     </div>
                                     Online Class
                                 </Link>
-                                <Link href={route('onlineexam.index')} className='nav-link !py-[10px]'  >
+                                {/* <Link href={route('onlineexam.index')} className='nav-link !py-[10px]'  >
                                     <div className='nav-link-icon'>
                                         <PencilSquareIcon className='w-5 h-5 text-gray-500' />
                                     </div>
                                     Online Exam
-                                </Link>
+                                </Link> */}
                                 <Link href={route('schedules')} className='nav-link !py-[10px]'  >
                                     <div className='nav-link-icon'>
                                         <CalendarDaysIcon className='w-5 h-5 text-gray-500' />
