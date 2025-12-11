@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 echo "Running composer"
-# Install dependencies and make sure Faker is available in production
 composer install --no-dev --working-dir=/var/www/html
 composer require fakerphp/faker --working-dir=/var/www/html
+
+echo "Installing frontend dependencies..."
+npm install --prefix /var/www/html
+
+echo "Building frontend assets..."
+npm run build --prefix /var/www/html
 
 echo "Caching config..."
 php artisan config:cache
