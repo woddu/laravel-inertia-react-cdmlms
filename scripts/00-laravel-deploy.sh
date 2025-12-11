@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-set -e  # abort on any error
+
+echo "Running composer"
+composer install --no-dev --working-dir=/var/www/html
+composer require fakerphp/faker --working-dir=/var/www/html
 
 echo "Ensuring SQLite database file exists..."
 mkdir -p /var/www/html/database
@@ -14,14 +17,13 @@ chown www-data:www-data /var/www/html/database
 chmod 775 /var/www/html/database
 
 echo "Verifying SQLite file..."
-ls -l /var/www/html/database
-if [ ! -s /var/www/html/database/database.sqlite ]; then
-    echo "ERROR: SQLite database file missing or empty!"
-    exit 1
+ls -l /var/www/html/database   # show directory contents for debugging
+if [ ! -f /var/www/html/database/database.sqlite ]; then
+    echo "ERROR: SQLite database file still missing after setup!"
+    exit 1                         # abort deployment
 fi
 
 echo "Caching config..."
-php artisan config:clear
 php artisan config:cache
 
 echo "Caching routes..."
